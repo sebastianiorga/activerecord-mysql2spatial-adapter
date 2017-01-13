@@ -136,7 +136,7 @@ module ActiveRecord
                 if row[:Index_type] != 'SPATIAL'
                   indexes << IndexDefinition.new(row[:Table], row[:Key_name], row[:Non_unique].to_i == 0, [], [], nil, nil, index_type, index_using, row[:Index_comment].presence)
                 else
-                  indexes << ::RGeo::ActiveRecord::SpatialIndexDefinition.new(row[:Table], row[:Key_name], row[:Non_unique] == 0, [], [], row_[:Index_type] == 'SPATIAL')
+                  indexes << ::RGeo::ActiveRecord::SpatialIndexDefinition.new(row[:Table], row[:Key_name], row[:Non_unique] == 0, [], [], row[:Index_type] == 'SPATIAL')
                 end
               end
 
