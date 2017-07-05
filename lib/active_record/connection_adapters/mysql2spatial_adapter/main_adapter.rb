@@ -72,7 +72,16 @@ module ActiveRecord
           if ::RGeo::Feature::Geometry.check_type(value_)
             "GeomFromWKB(0x#{::RGeo::WKRep::WKBGenerator.new(:hex_format => true, little_endian: true).generate(value_)},#{value_.srid})"
           else
-            super
+            if column_
+              ActiveSupport::Deprecation.warn(<<-MSG.squish)
+                Passing a column to `quote` has been deprecated. It is only used
+                for type casting, which should be handled elsewhere. See
+                https://github.com/rails/arel/commit/6160bfbda1d1781c3b08a33ec4955f170e95be11
+                for more information.
+              MSG
+            end
+
+            super(value_)
           end
         end
 
