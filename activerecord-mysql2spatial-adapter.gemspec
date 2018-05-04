@@ -25,13 +25,13 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rgeo-activerecord>, ["~> 5.1"])
-      s.add_runtime_dependency(%q<mysql2>, [">= 0.4.4"])
+      s.add_runtime_dependency(%q<mysql2>, [">= 0.4.4", "< 0.5"])
     else
       s.add_dependency(%q<rgeo-activerecord>, ["~> 2.0"])
       s.add_dependency(%q<mysql2>, [">= 0.2.13"])
     end
   else
     s.add_dependency(%q<rgeo-activerecord>, ["~> 2.0"])
-    s.add_dependency(%q<mysql2>, [">= 0.2.13", "< 0.5"])
+    s.add_dependency(%q<mysql2>, [">= 0.2.13"])
   end
 end
