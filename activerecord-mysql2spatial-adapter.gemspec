@@ -32,6 +32,6 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<rgeo-activerecord>, ["~> 2.0"])
-    s.add_dependency(%q<mysql2>, [">= 0.2.13", "<= 0.4.10"])
+    s.add_dependency(%q<mysql2>, [">= 0.2.13", "< 0.5"])
   end
 end
