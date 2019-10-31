@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.summary = "An ActiveRecord adapter for MySQL Spatial Extensions, based on RGeo and the mysql2 gem."
   s.test_files = ["test/tc_spatial_queries.rb", "test/tc_basic.rb"]
 
-  s_.platform = ::Gem::Platform::RUBY
-  s_.add_dependency('rgeo-activerecord', '~> 6.2')
-  s_.add_dependency('mysql2', '~> 0.5')
+  s.platform = ::Gem::Platform::RUBY
+  s.add_dependency('rgeo-activerecord', '~> 6.2')
+  s.add_dependency('mysql2', '~> 0.5')
 end
