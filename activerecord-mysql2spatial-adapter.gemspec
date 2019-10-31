@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.email = "getlasterror@gmail.com"
   s.extra_rdoc_files = ["README.rdoc", "History.rdoc"]
   s.files = ["History.rdoc", "README.rdoc", "Version", "lib/active_record/connection_adapters/mysql2spatial_adapter.rb", "lib/active_record/connection_adapters/mysql2spatial_adapter/arel_tosql.rb", "lib/active_record/connection_adapters/mysql2spatial_adapter/main_adapter.rb", "lib/active_record/connection_adapters/mysql2spatial_adapter/spatial_column.rb", "lib/active_record/connection_adapters/mysql2spatial_adapter/version.rb", "lib/active_record/type/spatial.rb", "test/tc_basic.rb", "test/tc_spatial_queries.rb"]
-  s.homepage = "http://dazuma.github.com/activerecord-mysql2spatial-adapter"
+  s.homepage = "https://github.com/kazuomatz/activerecord-mysql2spatial-adapter"
   s.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
   s.rubyforge_project = "virtuoso"
   s.rubygems_version = "2.2.2"

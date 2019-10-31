@@ -1,3 +1,8 @@
+
+=== 0.6.0.nonrelease / 2019-10-31
+
+* Fix for compatibility with ActiveRecord >= 6.0
+
 === 0.4.3 / 2012-08-02
 
 * The gemspec no longer includes the timestamp in the version, so that bundler can pull from github. (Reported by corneverbruggen)
