@@ -42,7 +42,8 @@ module ActiveRecord
       class MainAdapter < ConnectionAdapters::Mysql2Adapter
 
         NATIVE_DATABASE_TYPES = Mysql2Adapter::NATIVE_DATABASE_TYPES.merge(spatial: { name: "geometry", limit: {  type: :point  }})
-
+        INDEX_TYPES  = [:fulltext, :spatial]
+        INDEX_USINGS = [:btree, :hash]
 
         def initialize(*args_)
           super
