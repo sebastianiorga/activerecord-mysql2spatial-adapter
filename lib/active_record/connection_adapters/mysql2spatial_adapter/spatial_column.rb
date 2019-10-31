@@ -51,7 +51,7 @@ module ActiveRecord
           else
             @limit = sql_type_metadata.limit
           end
-          super(name, default, sql_type_metadata, null, table_name, default_function, collation, comment: comment)
+          super(name, default, sql_type_metadata, null)
           FACTORY_SETTINGS_CACHE[factory_settings_.object_id] = factory_settings_
         end
 

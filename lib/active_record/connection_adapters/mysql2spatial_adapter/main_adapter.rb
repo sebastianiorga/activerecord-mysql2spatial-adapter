@@ -69,8 +69,8 @@ module ActiveRecord
 
 
         def quote(value_)
-          if ::RGeo::Feature::Geometry.check_type(value_)
-            "GeomFromWKB(0x#{::RGeo::WKRep::WKBGenerator.new(:hex_format => true, little_endian: true).generate(value_)},#{value_.srid})"
+          if defined?(value_.type) && value_.type.is_a?(ActiveRecord::Type::Spatial)
+            "GeomFromWKB(0x#{::RGeo::WKRep::WKBGenerator.new(:hex_format => true, little_endian: true).generate(value_.value)},#{value_.value.srid})"
           else
             super
           end
