@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |s|
   s.name = "activerecord-mysql2spatial-adapter"
-  s.version = "0.6.0.nonrelease"
+  s.version = "0.6.1.nonrelease"
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
