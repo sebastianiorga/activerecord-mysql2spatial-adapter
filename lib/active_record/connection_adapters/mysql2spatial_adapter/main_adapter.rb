@@ -59,7 +59,7 @@ module ActiveRecord
 
 
         def spatial_column_constructor(name_)
-          ::RGeo::ActiveRecord::DEFAULT_SPATIAL_COLUMN_CONSTRUCTORS[name_]
+          ::RGeo::ActiveRecord.geometric_type_from_name(name_)
         end
 
 
@@ -123,31 +123,31 @@ module ActiveRecord
         end
 
 
-        def indexes(table_name, name_=nil)
-          indexes = []
-          current_index = nil
-          execute_and_free("SHOW KEYS FROM #{quote_table_name(table_name)}", 'SCHEMA') do |result|
-            each_hash(result) do |row|
-              if current_index != row[:Key_name]
-                next if row[:Key_name] == 'PRIMARY' # skip the primary key
-                current_index = row[:Key_name]
+        # def indexes(table_name, name_=nil)
+        #   indexes = []
+        #   current_index = nil
+        #   execute_and_free("SHOW KEYS FROM #{quote_table_name(table_name)}", 'SCHEMA') do |result|
+        #     each_hash(result) do |row|
+        #       if current_index != row[:Key_name]
+        #         next if row[:Key_name] == 'PRIMARY' # skip the primary key
+        #         current_index = row[:Key_name]
 
-                mysql_index_type = row[:Index_type].downcase.to_sym
-                index_type  = INDEX_TYPES.include?(mysql_index_type)  ? mysql_index_type : nil
-                index_using = INDEX_USINGS.include?(mysql_index_type) ? mysql_index_type : nil
-                if row[:Index_type] != 'SPATIAL'
-                  indexes << IndexDefinition.new(row[:Table], row[:Key_name], row[:Non_unique].to_i == 0, [], {}, nil, nil, index_type, index_using, row[:Index_comment].presence)
-                else
-                  indexes << ::RGeo::ActiveRecord::SpatialIndexDefinition.new(row[:Table], row[:Key_name], row[:Non_unique] == 0, [], [], row[:Index_type] == 'SPATIAL')
-                end
-              end
+        #         mysql_index_type = row[:Index_type].downcase.to_sym
+        #         index_type  = INDEX_TYPES.include?(mysql_index_type)  ? mysql_index_type : nil
+        #         index_using = INDEX_USINGS.include?(mysql_index_type) ? mysql_index_type : nil
+        #         if row[:Index_type] != 'SPATIAL'
+        #           indexes << IndexDefinition.new(row[:Table], row[:Key_name], row[:Non_unique].to_i == 0, [], {}, nil, nil, index_type, index_using, row[:Index_comment].presence)
+        #         else
+        #           indexes << ::RGeo::ActiveRecord::SpatialIndexDefinition.new(row[:Table], row[:Key_name], row[:Non_unique] == 0, [], [], row[:Index_type] == 'SPATIAL')
+        #         end
+        #       end
 
-              indexes.last.columns << row[:Column_name]
-              indexes.last.lengths.merge!(row[:Column_name] => row[:Sub_part].to_i) if row[:Sub_part] && !indexes.last.try(:spatial)
-            end
-          end
-          indexes
-        end
+        #       indexes.last.columns << row[:Column_name]
+        #       indexes.last.lengths.merge!(row[:Column_name] => row[:Sub_part].to_i) if row[:Sub_part] && !indexes.last.try(:spatial)
+        #     end
+        #   end
+        #   indexes
+        # end
 
 
         protected
